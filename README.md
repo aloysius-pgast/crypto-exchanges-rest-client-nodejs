@@ -2,7 +2,7 @@
 
 Node.js REST client for [Crypto Exchanges Gateway](https://github.com/aloysius-pgast/crypto-exchanges-gateway)
 
-Compatible with gateway version >= 1.6.0
+Compatible with gateway version >= 1.6.3
 
 ## Supported features
 
