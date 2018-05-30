@@ -1,6 +1,6 @@
 {
   "name": "crypto-exchanges-rest-client",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Node.js REST client for Crypto Exchange Gateway",
   "main": "lib/client.js",
   "scripts": {},
