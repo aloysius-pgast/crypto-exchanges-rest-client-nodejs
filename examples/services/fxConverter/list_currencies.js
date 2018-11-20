@@ -1,7 +1,7 @@
 "use strict";
 
 /*
-This example show how to retrieve history from CoinMarketCap
+This example show how list fiat currencies supported by fxConverter module
 */
 const _ = require('lodash');
 const Helpers = require('../../lib/helpers');
@@ -10,13 +10,6 @@ const Client = require('../../../lib/client');
 // this is the default
 const baseUri = 'http://127.0.0.1:8000';
 const restClient = new Client.RestClient({baseUri:baseUri});
-
-// retrieve history for NEO between 2017-12-25 & 2017-12-31
-let opt = {
-    symbol:'NEO',
-    from:'2017-12-25',
-    to:'2017-12-31'
-}
 
 // first ensure gateway is running
 restClient.ping().then((running) => {
@@ -28,13 +21,13 @@ restClient.ping().then((running) => {
     // retrieve services to ensure exchanges are supported
     return restClient.getServices().then((services) => {
         // ensure service is supported
-        if (!restClient.checkService(services, 'coinmarketcap', ['history']))
+        if (!restClient.checkService(services, 'fxConverter'))
         {
-            console.log(`CoinMarketCap history is not enabled on gateway`);
+            console.log(`fxConverter service is not enabled on gateway`);
             process.exit(1);
         }
-        return restClient.getCoinMarketCapHistory(opt.symbol, {from:opt.from, to:opt.to}).then((data) => {
-            console.log(`History :`);
+        return restClient.listFxConverterCurrencies().then((data) => {
+            console.log(`Currencies supported by fxConverter module :`);
             console.log(Helpers.stringify(data, null, 4) + "\n");
         });
     });

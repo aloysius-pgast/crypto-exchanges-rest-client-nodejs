@@ -2,7 +2,7 @@
 
 Node.js REST client for [Crypto Exchanges Gateway](https://github.com/aloysius-pgast/crypto-exchanges-gateway)
 
-Compatible with gateway version >= 1.6.3
+Compatible with gateway version >= 1.7.6
 
 ## Supported features
 
@@ -19,8 +19,8 @@ Client provides methods to perform the following :
 - create an order
 - cancel an order
 - retrieve balances
-- retrieve tickers from _Coin Market Cap_
-- retrieve history from _Coin Market Cap_
+- retrieve Market Cap informations
+- convert between fiat currencies
 - send push notification using _Push Over_
 - manage RPC sessions
 - manage _Ticker Monitor_ alerts
@@ -67,9 +67,9 @@ restClient.isCompatible().then((compatible) => {
         console.log(JSON.stringify(data, null, 4) + "\n");
     });
 
-    // retrieve tickers from Coin Market Cap
-    restClient.getCoinMarketCapTickers({symbols:['NEO']}).then((data) => {
-        console.log('Tickers from Coin Market Cap :')
+    // retrieve Market Cap informations
+    restClient.getMarketCapTickers({symbols:['NEO']}).then((data) => {
+        console.log('Market Cap tickers :')
         console.log(JSON.stringify(data, null, 4) + "\n");
     });
 });

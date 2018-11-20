@@ -11,7 +11,7 @@ const Client = require('../../../lib/client');
 const baseUri = 'http://127.0.0.1:8000';
 const restClient = new Client.RestClient({baseUri:baseUri});
 
-/* Creates an alert if USDT-NEO last price on binance exchange is in range [130,141] AND NEO price on CoinMarketCap is > 130 */
+/* Creates an alert if USDT-NEO last price on binance exchange is in range [130,141] AND NEO price on marketCap module is > 130 */
 
 let opt = {
     name:'MyAlert',
@@ -19,11 +19,11 @@ let opt = {
     exchange:'binance',
     // condition will become active if price moves into this range
     exchangeRange:[70,85],
-    // condition will become active is price on CoinMarketCap becomes greater then this price
-    coinMarketCapPrice:70
+    // condition will become active if price on marketCap module becomes greater then this price
+    marketCapPrice:70
 }
 let conditionBuilder = restClient.getTickerMonitorConditionBuilder();
-conditionBuilder.exchange(opt.exchange, 'USDT-NEO', 'last', 'in', opt.exchangeRange).coinMarketCap('NEO', 'price_usd', 'gt', opt.coinMarketCapPrice);
+conditionBuilder.exchange(opt.exchange, 'USDT-NEO', 'last', 'in', opt.exchangeRange).marketCap('NEO', 'price_usd', 'gt', opt.marketCapPrice);
 
 // first ensure gateway is running
 restClient.ping().then((running) => {
